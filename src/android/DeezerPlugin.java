@@ -33,10 +33,11 @@ public class DeezerPlugin extends CordovaPlugin {
     private final static String METHOD_SEND_TO_JS_OBJ = "window.cordova.plugins.DeezerPlugin.events";
     private final static String METHOD_SEND_TO_JS_POSITION_CHANGED = ".onPosition";
     private final static String METHOD_SEND_TO_JS_BUFFER_CHANGED = ".onBuffering";
-    private  final static String METHOD_CHANGE_POSITION = "changePosition";
-    private  final static String METHOD_CHANGE_POSITION_TO = "changePositionTo";
-    private  final static String METHOD_SET_VOLUME = "setVolume";
-    private  final static String METHOD_GET_TOKEN = "getToken";
+    private final static String METHOD_CHANGE_POSITION = "changePosition";
+    private final static String METHOD_CHANGE_POSITION_TO = "changePositionTo";
+    private final static String METHOD_SET_VOLUME = "setVolume";
+    private final static String METHOD_GET_TOKEN = "getToken";
+    private final static String METHOD_SET_AUTH_INFO = "setAuthInfo";
 
     private CordovaInterface mInterface;
     private CordovaWebView mWebView;
@@ -59,8 +60,6 @@ public class DeezerPlugin extends CordovaPlugin {
     public boolean execute(final String action, final JSONArray args,
                            final CallbackContext callbackContext)
             throws JSONException {
-        // Log.i("DeezerPlugin", "execute : " + action);
-
         // Method not found
         if (action == null) {
             return false;
@@ -152,6 +151,11 @@ public class DeezerPlugin extends CordovaPlugin {
                 final  float val2 =(float)json.optDouble("setVolume2");
                 mListener.setVolume(val1,val2);
             }
+        } else if(action.equals(METHOD_SET_AUTH_INFO)){
+            String token = args.getString(0);
+            String userId = args.getString(1);
+            String userString = args.getString(2);
+            mListener.setAuthInfo(callbackContext, token, userId, userString);
         } else {
             // method not found !
             return false;

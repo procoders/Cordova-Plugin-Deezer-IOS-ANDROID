@@ -12,7 +12,7 @@
             </feature>
         </config-file>
         
-        <config-file parent="/*" target="AndroidManifest.xml" />
+        <config-file parent="/manifest/application" target="AndroidManifest.xml" />
         <source-file src="src/android/DeezerPlugin.java" target-dir="src/cordova/plugin/deezer/DeezerPlugin" />
         <source-file src="src/android/DeezerJSListener.java" target-dir="src/cordova/plugin/deezer/DeezerPlugin" />
         <source-file src="src/android/DeezerSDKController.java" target-dir="src/cordova/plugin/deezer/DeezerPlugin" />
@@ -23,7 +23,7 @@
 
         
         <!-- Android manifest permissions -->
-        <config-file target="AndroidManifest.xml" parent="/*">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />

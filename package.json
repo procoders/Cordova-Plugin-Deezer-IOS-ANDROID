@@ -1,27 +1,24 @@
 {
   "name": "Cordova-Plugin-Deezer-IOS-ANDROID",
-  "version": "0.0.3",
-  "description": "[![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)",
+  "version": "0.0.4",
+  "description":
+    "[![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)",
   "cordova": {
     "id": "cordova.plugin.deezer",
-    "platforms": [
-      "android",
-      "ios"
-    ]
+    "platforms": ["android", "ios"]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID.git"
+    "url":
+      "git+https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID.git"
   },
-  "keywords": [
-    "ecosystem:cordova",
-    "cordova-android",
-    "cordova-ios"
-  ],
+  "keywords": ["ecosystem:cordova", "cordova-android", "cordova-ios"],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID/issues"
+    "url":
+      "https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID/issues"
   },
-  "homepage": "https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID#readme"
+  "homepage":
+    "https://github.com/jeweller1980stepanets/Cordova-Plugin-Deezer-IOS-ANDROID#readme"
 }

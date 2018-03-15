@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+
 import com.deezer.sdk.network.connect.DeezerConnect;
 import com.deezer.sdk.network.connect.SessionStore;
 import com.deezer.sdk.network.connect.event.DialogError;
@@ -28,6 +29,11 @@ import com.deezer.sdk.player.event.RadioPlayerListener;
 import com.deezer.sdk.player.exception.TooManyPlayersExceptions;
 import com.deezer.sdk.player.networkcheck.WifiAndMobileNetworkStateChecker;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
+import com.deezer.sdk.model.User;
+
 import com.deezer.sdk.model.PlayableEntity;
 
 import cordova.plugin.deezer.DeezerPlugin;
@@ -38,11 +44,10 @@ public class DeezerSDKController {
     public static String token;
     /** Permissions requested on Deezer accounts. */
     private final static String[] PERMISSIONS = new String[] {
-            "basic_access","email","offline_access","manage_library","manage_community","delete_library","listening_history"
+            "email","offline_access"
     };
 
     private static JSONArray errorMessage = new JSONArray();
-
 
     private Activity mActivity;
     private DeezerConnect mConnect;
@@ -65,16 +70,24 @@ public class DeezerSDKController {
 
     public void init(final CallbackContext callbackContext, final String appId) {
         mConnect = new DeezerConnect(mActivity, appId);
-
-        SessionStore sessionStore = new SessionStore();
-        if (sessionStore.restore(mConnect, mActivity)) {
-            // The restored session is valid, navigate to the Home Activity
-            Log.i(LOG_TAG, "Deezer sessionStore works");
-        } else {
-            Log.i(LOG_TAG, "Deezer sessionStore fails");
-        }
-
         callbackContext.success();
+
+    }
+
+    public void setAuthInfo(final CallbackContext callbackContext, final String token, final String userId, final String userString) {
+        Editor context1;
+        (context1 = mActivity.getSharedPreferences("deezer-session", 0).edit()).putString("access_token", token);
+
+        context1.putLong("expires_in", 0);
+        context1.putString("user", userString);
+        context1.putString("access_token_" + userId, token);
+        context1.putLong("expires_in_" + userId, 0);
+        context1.putString("user_" + userId, userString);
+
+        context1.commit();
+        SessionStore sessionStore = new SessionStore();
+        sessionStore.restore(mConnect, mActivity);
+        callbackContext.success();        
     }
 
     public void login(final CallbackContext callbackContext) {
@@ -88,12 +101,12 @@ public class DeezerSDKController {
             }
         });
     }
+
     public  void setChangePosition(long idx){
         long x = mPlayerWrapper.getTrackDuration()*idx/100;
         mPlayerWrapper.seek(x);
-
-
     }
+
     public  void setChangePositionTo(long idx){
         long x =idx/mPlayerWrapper.getTrackDuration();
         if(x > 0){
@@ -104,6 +117,7 @@ public class DeezerSDKController {
             mPlugin.sendUpdate(".onError",new Object[]{array});
         }
     }
+
     public void getToken(CallbackContext context){
         context.success(this.token);
     }
@@ -406,14 +420,11 @@ public class DeezerSDKController {
 
         @Override
         public void onComplete(final Bundle bundle) {
-            Log.i(LOG_TAG, "Logged In!");
             DeezerSDKController.token = String.valueOf(bundle.get("access_token"));
             JSONArray array = new JSONArray();
             mPlugin.sendUpdate(".onLogedIn",new Object[]{array});
             JSONObject dict = new JSONObject();
             for (String key : bundle.keySet()) {
-                Log.d(LOG_TAG, key + " -> " + bundle.getString(key));
-
                 try {
                     dict.put(key, bundle.getString(key));
                 }

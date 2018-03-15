@@ -8,7 +8,7 @@ This plugin included all main functions of audio player for Deezer servise
 
 You may install latest version from master
 ```sh
-cordova plugin add https://github.com/procoders/cordova-plugin-deezer
+cordova plugin add https://github.com/vitali-bantsevich/cordova-plugin-deezer
 ```
 ### Removing the Plugin from project
 ```sh

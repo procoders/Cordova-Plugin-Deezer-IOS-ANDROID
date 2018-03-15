@@ -37,5 +37,7 @@ public interface DeezerJSListener {
     
     boolean setVolume(float val1, float val2);
 
-      void getToken(CallbackContext callbackContext);
+    void getToken(CallbackContext callbackContext);
+
+    void setAuthInfo(CallbackContext callbackContext, String token, String userId, String userString);
 }
