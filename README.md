@@ -1,4 +1,4 @@
- [![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)
+ [![N|Solid](http://procoders.tech/art/pro-powered.png)](http://procoders.tech/)
 
 # Cordova Deezer Plugin
 This plugin included all main functions of audio player for Deezer servise
@@ -73,11 +73,13 @@ onError: function(args){}//args[0] - error message
 deezerCordova.Events.onPosition = function(args){..`code`..}
 ```
 
+## Authors
 
-### Authors
-- Aleksey Stepanets
-- Oleg Kopachovets
+[Procoders.TECH](https://procoders.tech)
 
+We gear IT up!
 
+> Procoders mission is to ship meaningful code, all our partners come from referrals, and our pricing model is transparent and fair. Drop us a line and let’s start a conversation right now. 
 
-[![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)
+[![](https://www.procoders.tech/art/pro-powered.png)](http://procoders.tech/)
+
